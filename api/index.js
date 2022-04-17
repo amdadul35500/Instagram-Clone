@@ -16,14 +16,21 @@ const userRouter = require("./routers/userRouter");
 const conversationRouter = require("./routers/conversation");
 const messageRouter = require("./routers/messages");
 const server = http.createServer(app);
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://mellow-belekoy-9c67d6.netlify.app",
+  })
+);
 
 // socket
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://mellow-belekoy-9c67d6.netlify.app",
   },
 });
-console.log("commmmmm");
+
 io.on("connection", (socket) => {
   console.log("socket.io is connected");
 
